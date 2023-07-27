@@ -39,7 +39,7 @@
 					<h3>Key Features of Lodash</h3>
 					<ul>
 						<li class="fragment">Array manipulation (map, filter, reduce, etc.).</li>
-						<li class="fragment">Object manipulation (clone, merge, key presence check, etc.).</li>
+						<li class="fragment">Object manipulation (clone, merge, etc.).</li>
 						<li class="fragment">String, number, and collection operations.</li>
 						<li class="fragment">Function utility (composition, currying, etc.).</li>
 					</ul>
@@ -130,11 +130,57 @@ const result = add5(3); // The result will be 8
 			<section>
 				<section>
 					<h3>Lodash Special Features</h3>
-					<ul>
-						<li class="fragment">Chaining - simplifying consecutive operations.</li>
-						<li class="fragment">Modularity - using only required functions.</li>
-						<li class="fragment">Support for various environments</li>
-					</ul>
+				</section>
+				<section>
+					<p>Chaining - simplifying consecutive operations.</p>
+					<pre class="fragment"><code>
+const data = [1, 2, 3, 4, 5, 6];
+
+// Without Lodash
+let filteredData = data.filter(num => num % 2 === 0);
+let multipliedData = filteredData.map(num => num * 2);
+let sum = multipliedData.reduce((acc, curr) => acc + curr, 0);
+
+// With Lodash (Chaining)
+const sum = _.chain(data)
+.filter(num => num % 2 === 0)
+.map(num => num * 2)
+.sum()
+.value();
+					
+</code></pre>
+				</section>
+				<section>
+					<p>Modularity - using only required functions.</p>
+					<pre class="fragment"><code data-line-numbers="2-9|11-26">
+// Without Lodash
+const userData = {
+name: "Alice",
+age: 30,
+email: "alice@example.com",
+country: "USA",
+hobbies: ["Reading", "Painting"],
+};
+
+const { name, email } = userData;
+const formattedName = name.toUpperCase();
+
+// With Lodash (Modularity)
+import { pick, toUpper } from "lodash";
+
+const userData = {
+name: "Alice",
+age: 30,
+email: "alice@example.com",
+country: "USA",
+hobbies: ["Reading", "Painting"],
+};
+const { name, email } = pick(userData, ["name", "email"]);
+const formattedName = toUpper(name);			
+</code></pre>
+				</section>
+				<section>
+					<p>Support for various environments</p>
 				</section>
 			</section>
 			<!-- Slide 6 -->
@@ -163,14 +209,12 @@ const result = add5(3); // The result will be 8
 			</section>
 			<!-- Slide 8 -->
 			<section>
-				<section>
-					<h3>Conclusion</h3>
-					<ul>
-						<li class="fragment">Enhancing JavaScript Development</li>
-						<li class="fragment">Boosting Productivity and Code Efficiency</li>
-						<li class="fragment">Improving Code Readability and Maintainability</li>
-					</ul>
-				</section>
+				<h3>Conclusion</h3>
+				<ul>
+					<li>Enhancing JavaScript Development</li>
+					<li>Boosting Productivity and Code Efficiency</li>
+					<li>Improving Code Readability and Maintainability</li>
+				</ul>
 			</section>
 		</div>
 	</div>
